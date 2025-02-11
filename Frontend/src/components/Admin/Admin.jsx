@@ -24,7 +24,7 @@ const Admin = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:3000/api/upload", formData, {
+      const response = await axios.post("https://mayank-mart.onrender.com/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Ensure user is authenticated
