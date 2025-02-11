@@ -12,7 +12,7 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch("https://mayank-mart-backendfirst.onrender.com/login", {
+      const response = await fetch("https://mayank-mart-backendsecond.onrender.com/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
