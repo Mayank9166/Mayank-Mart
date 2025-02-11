@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import lightButton from '../../assets/lightmode.png'
-import darkButton from '../../assets/darkmode.png'
+import lightButton from '../../../public/lightmode.png'
+import darkButton from '../../../public/darkmode.png'
+
 
 const DarkMode = () => {
     const [theme, settheme] = useState("dark")

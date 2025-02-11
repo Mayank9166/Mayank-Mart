@@ -1,9 +1,10 @@
 import React from 'react'
 import Slider from 'react-slick';
-import test1 from '../../assets/test1.jpg'
-import test2 from '../../assets/test2.jpg'
-import test3 from '../../assets/test3.jpg'
-import test4 from '../../assets/test4.jpg'
+import test1 from '../../../public/test1.jpg'
+import test2 from '../../../public/test2.jpg'
+import test3 from '../../../public/test3.jpg'
+import test4 from '../../../public/test4.jpg'
+
 const TestimonialData = [
     {
       id: 1000,
