@@ -55,7 +55,7 @@ const App = () => {
     <div className='dark:bg-gray-900 dark:text-white bg-white duration-200'>
       <Routes>
         <Route 
-          path="/home" 
+          path="/" 
           element={
             <Protected>
               <>

@@ -23,7 +23,7 @@ const Login = () => {
       if (response.ok==true) {
         localStorage.setItem("Token", data.token); // Store token
         toast.success("Login successful");
-        navigate("/home"); // Redirect to home page
+        navigate("/"); // Redirect to home page
       } else {
         toast.error(data.error || "Invalid credentials");
       }
