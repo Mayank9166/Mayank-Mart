@@ -19,7 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB Connection
-mongoose.connect("mongodb+srv://mayanksaini91:mayank91@cluster0.ntvgg.mongodb.net//Myfirstproject", {
+mongoose.connect("mongodb+srv://mayanksaini9166:mayanksaini9166@cluster0.ntvgg.mongodb.net/test", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
