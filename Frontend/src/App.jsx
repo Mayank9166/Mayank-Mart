@@ -23,7 +23,7 @@ const App = () => {
    
     const fetchImages = async () => {
       try {
-        const response = await axios.get("http://localhost:3000/api/images", {
+        const response = await axios.get("https://mayank-6ry9.onrender.com/api/images", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`, // Ensure a valid token is stored
           },
