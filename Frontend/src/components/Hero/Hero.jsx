@@ -28,7 +28,7 @@ const imageList = [
           "consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
       },
 ]
-const Hero = () => {
+const Hero = ({handlePop}) => {
     
   var settings = {
     dots: false,
@@ -70,7 +70,7 @@ const Hero = () => {
           <div data-aos="zoom-in"
           data-aos-once="true"
           data-aos-duration="500">
-            <button className='bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full'>Order Now</button>
+            <button onClick={handlePop} className='bg-gradient-to-r from-primary to-secondary hover:scale-105 duration-200 text-white py-2 px-4 rounded-full'>Order Now</button>
           </div>
          </div>
          {/* image-section */}  

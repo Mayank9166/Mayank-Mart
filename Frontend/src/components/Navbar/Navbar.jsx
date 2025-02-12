@@ -20,7 +20,7 @@ const dropdown = [
   { id: 8, name: "Top Rated", link: "/#" },
 ];
 
-const Navbar = ({ handlepop }) => {
+const Navbar = ({ handlePop }) => {
   const navigate = useNavigate();
 
   // Logout function
@@ -34,11 +34,20 @@ const Navbar = ({ handlepop }) => {
       {/* Upper Navbar */}
       <div className="bg-primary/40 py-2">
         <div className="container flex justify-between items-center">
-          <div>
+          <div className="flex items-center gap-4">
+            {/* Logo and Store Name */}
             <a href="#" className="font-bold text-2xl sm:text-3xl flex gap-2">
               <img src={logo} alt="logo" className="w-10" />
               Mayank Mart
             </a>
+
+            {/* Admin Button */}
+            <button
+              onClick={() => navigate("/login")}
+              className="bg-primary text-white px-4 py-1 rounded-full hover:bg-gray-700 transition duration-200"
+            >
+              Admin
+            </button>
           </div>
 
           {/* Search Bar */}
@@ -55,7 +64,7 @@ const Navbar = ({ handlepop }) => {
 
             {/* Order button */}
             <button
-              onClick={handlepop}
+              onClick={handlePop}
               className="bg-gradient-to-r from-primary to-secondary transition-all duration-200 text-white py-1 px-4 rounded-full flex items-center gap-3 group"
             >
               <span className="group-hover:block hidden transition-all duration-200">

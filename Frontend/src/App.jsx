@@ -23,7 +23,7 @@ const App = () => {
    
     const fetchImages = async () => {
       try {
-        const response = await axios.get("https://mayank-mart-backendsecond.onrender.com/api/images", {
+        const response = await axios.get("http://localhost:3000/api/images", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("Token")}`, // Ensure a valid token is stored
           },
@@ -47,7 +47,7 @@ const App = () => {
   }, []);
 
   const [orderPopup, setOrderPopup] = useState(false);
-  const handlepop = () => {
+  const handlePop = () => {
     setOrderPopup(!orderPopup);
   };
 
@@ -59,10 +59,10 @@ const App = () => {
           element={
             <Protected>
               <>
-                <Navbar handlepop={handlepop} />
-                <Hero />
+                <Navbar handlePop={handlePop} />
+                <Hero handlePop={handlePop} />
                 <Products data= {images} />
-                <TopProducts />
+                <TopProducts handlePop={handlePop}  />
                 <Banner />
                 <Subscribe />
                 <Products data={images}/>

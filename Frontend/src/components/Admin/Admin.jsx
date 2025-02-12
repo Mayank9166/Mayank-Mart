@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom"; // Corrected import
 import { toast } from "react-toastify";
 import axios from "axios";
 
@@ -6,8 +7,10 @@ const Admin = () => {
   const [title, setTitle] = useState("");
   const [color, setColor] = useState("");
   const [rating, setRating] = useState("");
- 
   const [imageUrl, setImageUrl] = useState("");
+
+  const navigate = useNavigate(); // Corrected useNavigate usage
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -24,28 +27,25 @@ const Admin = () => {
     }
 
     try {
-      const response = await axios.post("https://mayank-mart-backendsecond.onrender.com/api/upload", formData, {
+      const response = await axios.post("http://localhost:3000/api/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization: `Bearer ${localStorage.getItem("authToken")}`, // Ensure user is authenticated
+          Authorization: `Bearer ${localStorage.getItem("Token")}`,
         },
       });
 
-      toast.success("Image upload successfully")
+      toast.success("Image uploaded successfully!");
       console.log("Uploaded Image URL:", response.data.imageUrl);
 
       // Reset form
       setTitle("");
       setColor("");
       setRating("");
-     
       setImageUrl("");
-     
     } catch (error) {
       console.error("Error uploading image:", error.response?.data || error);
     }
   };
-
 
   return (
     <div className="flex flex-col items-center min-h-screen p-6 bg-primary/15">
@@ -75,20 +75,21 @@ const Admin = () => {
           className="w-full p-2 mb-3 border rounded"
           required
         />
-      
         <input
           type="text"
           placeholder="Or enter an Image URL"
           value={imageUrl}
-          onChange={(e) => {
-            setImageUrl(e.target.value);
-            setImageFile(null);
-          }}
+          onChange={(e) => setImageUrl(e.target.value)}
           className="w-full p-2 mb-3 border rounded"
         />
-        <button type="submit" className="bg-primary text-white px-4 py-2 rounded">
-          Add Product
-        </button>
+        <div className="flex gap-3">
+          <button type="submit" className="bg-primary text-white px-4 py-2 rounded">
+            Add Product
+          </button>
+          <button type="button" onClick={() => navigate("/")} className="bg-primary text-white px-4 py-2 rounded">
+            Go To Home
+          </button>
+        </div>
       </form>
     </div>
   );

@@ -20,8 +20,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // MongoDB Connection
 mongoose.connect("mongodb+srv://mayanksaini9166:mayanksaini9166@cluster0.ntvgg.mongodb.net/test", {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
+  
 })
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.error("❌ MongoDB Connection Error:", err));
@@ -60,20 +59,36 @@ app.post("/register", async (req, res) => {
 });
 
 // 🔹 Login User
+const ADMIN_EMAIL = "mayank9166@gmail.com";
+const ADMIN_PASSWORD = "mayank91@"; // Use hashed password in a real app
+
+// 🔹 Login User
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+   
+   
+    // Check if user is admin  
+    if (email == ADMIN_EMAIL && password==ADMIN_PASSWORD) {
+      const token = jwt.sign({ userId: "admin" }, "mayanksaini",{ expiresIn: "24h" });
+      return res.status(200).json({ message: "Admin Login successful", token, role: "admin" });
+    }
+
+    
+    // Normal user login
     const user = await userModel.findOne({ email });
     if (!user) return res.status(401).json({ message: "User not found" });
-
     const isMatch = await bcrypt.compare(password, user.password);
+    
+
     if (!isMatch) return res.status(401).json({ message: "Incorrect password" });
 
     const token = jwt.sign({ userId: user._id }, "mayanksaini", { expiresIn: "24h" });
-    res.status(200).json({ message: "✅ Login successful", token });
+    res.status(200).json({ message: "Login successful", token, role: "user" });
+    
   } catch (error) {
     console.error("Login Error:", error);
-   res.status(500).json({ message: "Something went wrong" });
+    res.status(500).json({ message: "Something went wrong" });
   }
 });
 

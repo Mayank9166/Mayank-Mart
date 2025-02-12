@@ -12,26 +12,37 @@ const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await fetch("https://mayank-mart-backendsecond.onrender.com/login", {
+      const response = await fetch("http://localhost:3000/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password }),
       });
-
+  
       const data = await response.json();
-
-      if (response.ok==true) {
+  
+      if (response.ok) {
         localStorage.setItem("Token", data.token); // Store token
+        localStorage.setItem("Role", data.role); // Store role (admin/user)
+       console.log(data.message)
         toast.success("Login successful");
-        navigate("/"); // Redirect to home page
+        
+        // Redirect based on role
+        if(data.role=="admin") {
+          navigate("/admin"); // Redirect to Home Page
+        }
+        else {
+          navigate("/"); // Redirect to Admin Dashboard
+        } 
       } else {
-        toast.error(data.error || "Invalid credentials");
+        toast.error(data.message || "Invalid credentials");
       }
     } catch (error) {
       toast.error("Something went wrong");
     }
   };
-
+  
+  
+  
   
 
   return (
